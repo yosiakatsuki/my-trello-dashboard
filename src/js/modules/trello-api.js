@@ -37,14 +37,13 @@ export default class TrelloAPI {
     createSearchUrl(query) {
         query = encodeURIComponent(query)
         let endpoint = `https://api.trello.com/1/search?query=${query}`
-        console.log('query:' + endpoint)
+        // console.log('query:' + endpoint)
         return endpoint
     }
 
     checkRequest(success, failed) {
         let endpoint = 'https://api.trello.com/1/members/me/boards'
         this.getData(endpoint, success, failed)
-
     }
 
     /**

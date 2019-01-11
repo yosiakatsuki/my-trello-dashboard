@@ -45,7 +45,7 @@ window.appMain = new Vue({
             console.log(error)
         },
         getBoards: function (response) {
-            console.log(response.data)
+            // console.log(response.data)
             this.boards = response.data
             this.showApp()
         },

@@ -4,6 +4,7 @@ export default class Utility {
         let icon = '<i class="far fa-clock mr-1"></i>'
         if (dueComplete) {
             result = `${icon}完了`
+
         } else if (due !== '') {
             let dueDate = new Date(due)
             let year = dueDate.getFullYear()

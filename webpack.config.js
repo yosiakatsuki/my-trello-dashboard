@@ -1,16 +1,16 @@
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
         script: './src/js/script.js'
     },
-    devtool: 'source-map',
+    // devtool: 'source-map',
     output: {
         path: `${__dirname}/js`,
         filename: '[name].bundle.js'
     },
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.js'
+            'vue$': 'vue/dist/vue.min.js'
         }
     },
     module: {
