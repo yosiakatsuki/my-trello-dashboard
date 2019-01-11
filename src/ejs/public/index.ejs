@@ -1,12 +1,10 @@
 <% include( '../data/_data' ); let data = getData('index'); %>
 <%- include( '../template/_header', {data:data} ) %>
 
-<main class="container-fluid">
-<div class="row">
-	<div class="col">
-
-	</div>
-</div>
+<main id="main" class="container-fluid mt-3">
+	<%- include( '../template/app/_main',{data:data} ) %>
+	<%- include( '../template/config/_config',{data:data} ) %>
 </main>
+
 
 <%- include( '../template/_footer', {data:data} ) %>

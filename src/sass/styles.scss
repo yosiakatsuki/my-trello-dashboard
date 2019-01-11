@@ -1,0 +1,31 @@
+a.card {
+  color: #222;
+  text-decoration: none;
+}
+
+.board-name {
+  font-size: .9rem;
+}
+
+.trello-labels {
+  .label-item {
+    padding: .2em 1em;
+    font-size: .8em;
+  }
+  .orange {
+    background-color: #FF9F19;
+    color: #fff;
+  }
+  .green {
+    background-color: #62BD4F;
+    color: #ffffff;
+  }
+  .yellow {
+    background-color: #f1d600;
+    color: #ffffff;
+  }
+}
+
+.over-due {
+  color: #721c24;
+}

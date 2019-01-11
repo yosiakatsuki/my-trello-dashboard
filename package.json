@@ -8,7 +8,7 @@
     "build:postcss": "postcss src/css/*.css -u autoprefixer postcss-clean -d css --no-map",
     "build:cssrename": "rename -f './css/!(*.min.css)' {{f}}.min.css",
     "build:css": "npm run build:scss && npm run build:postcss && npm run build:cssrename",
-    "build:js": "babel ./src/js -d ./js --presets=env,minify --compact=true",
+    "build:js": "npm run build:ejs && webpack",
     "build:js-dev": "babel ./src/js -d ./js --presets=env,minify --compact=true --source-maps",
     "build:ejs": "ejs-cli --base-dir src/ejs/public '/**/*.ejs' --out ./",
     "watch:css": "watch 'npm run build:css' ./src/sass/",
@@ -24,7 +24,10 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^9.4.2",
+    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-minify": "^0.5.0",
     "browser-sync": "^2.26.3",
@@ -33,7 +36,10 @@
     "postcss-clean": "^1.1.0",
     "postcss-cli": "^6.0.1",
     "rename-cli": "^5.1.2",
-    "watch": "^1.0.2"
+    "vue": "^2.5.21",
+    "watch": "^1.0.2",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   },
   "browserslist": [
     "last 2 versions",

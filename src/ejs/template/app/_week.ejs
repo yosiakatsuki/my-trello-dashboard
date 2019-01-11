@@ -1,0 +1,12 @@
+<section id="week" v-pre>
+	<div class="mt-5" v-show="dataExists">
+		<div class="row no-gutters align-items-center mb-3">
+			<h2 class="h3 mb-0 col-auto">直近1週間のタスク</h2>
+			<div class="col-auto ml-3">
+				<button class="btn btn-secondary btn-sm" v-on:click="refresh"><i class="fas fa-sync-alt"></i></button>
+			</div>
+		</div>
+
+		<%- include( '../_card',{data:data} ) %>
+	</div>
+</section>

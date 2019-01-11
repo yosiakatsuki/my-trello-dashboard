@@ -1,0 +1,36 @@
+<section id="config" class="mt-5" v-show="showConfigFlg">
+	<div class="row justify-content-center">
+		<div class="col-12 col-lg-6">
+			<h2 class="h3">設定</h2>
+			<form id="form1">
+				<div class="form-group">
+					<label for="trello_apikey">APIキー</label>
+					<input id="trello_apikey" class="form-control" type="text" name="trello_apikey">
+				</div>
+				<div class="form-group">
+					<label for="trello_token">トークン</label>
+					<input id="trello_token" class="form-control" type="password" name="trello_token">
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<button id="run-app" type="button" class="btn btn-primary d-block w-100" v-on:click="startApp">実行</button>
+						<div class="alert alert-danger mt-2" style="display: none" role="alert" v-show="showConfigErrFlg">
+							情報を取得できません。APIキーとトークンが正しいか確認してください。
+						</div>
+						<div class="alert alert-warning mt-2" style="display: none" role="alert" v-show="showConfigWarnFlg">
+							APIキーとトークンを入力してください。
+						</div>
+					</div>
+					<div class="col-12 mt-3">
+						<input type="submit" class="btn btn-info d-block w-100" value="保存">
+						<small class="text-muted">※ブラウザのパスワード保存機能等で保存してください。</small>
+					</div>
+					<div class="col-12 mt-1">
+						<small class="text-muted">※APIキーとトークンは <a href="https://trello.com/app-key" target="_blank">https://trello.com/app-key</a> で取得してください。</small>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</section>
