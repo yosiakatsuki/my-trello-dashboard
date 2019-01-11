@@ -2,7 +2,7 @@
 
 直近で対応が必要なTrelloのカードをプロジェクトをまたいで一覧表示するために作ったツール
 
-[https://trello.com/app-key](https://trello.com/app-key)でAPIキーとトークンの取得が必要
+[https://trello.com/app-key](https://trello.com/app-key)でAPIキーとトークンの取得が必要です。
 
 表示は作者独自の検索クエリで作っているので完全なオレオレツールとなります。
 
