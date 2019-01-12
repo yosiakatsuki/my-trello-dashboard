@@ -7,7 +7,7 @@ export default function appWeek() {
     const appWeek = new Vue({
         el: '#week',
         data: {
-            query: '@me due:7 due:incomplete -is:archived',
+            query: '@me due:7 due:incomplete',
             cards: [],
             trello: null,
             dataExists: false,

@@ -8,8 +8,8 @@ export default function appToday() {
         el: '#today',
         data: {
             query: {
-                today:'@me due:2 due:incomplete -is:archived -label:P1',
-                priority:'@me label:P1 -is:archived'
+                today:'@me due:2 due:incomplete -label:P1',
+                priority:'@me label:P1'
             },
             tempCards:[],
             cards: [],

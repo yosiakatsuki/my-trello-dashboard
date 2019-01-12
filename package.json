@@ -11,6 +11,7 @@
     "build:js": "npm run build:ejs && webpack",
     "build:js-dev": "babel ./src/js -d ./js --presets=env,minify --compact=true --source-maps",
     "build:ejs": "ejs-cli --base-dir src/ejs/public '/**/*.ejs' --out ./",
+    "build": "npm run build:css & npm run build:js & npm run build:ejs",
     "watch:css": "watch 'npm run build:css' ./src/sass/",
     "watch:js": "watch 'npm run build:js' ./src/js/",
     "watch:js-dev": "watch 'npm run build:js-dev' ./src/js/",

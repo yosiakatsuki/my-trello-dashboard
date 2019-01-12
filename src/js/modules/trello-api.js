@@ -17,6 +17,10 @@ export default class TrelloAPI {
         return `${url}${str}${this.query}`
     }
 
+    getExcludeCardsQuery() {
+        return ` -is:archived -list:Done`
+    }
+
     getData(endpoint, success, failed) {
         let conf = Config.isSetUpConfig()
         if (!conf) {
@@ -35,7 +39,7 @@ export default class TrelloAPI {
     }
 
     createSearchUrl(query) {
-        query = encodeURIComponent(query)
+        query = encodeURIComponent(query + this.getExcludeCardsQuery())
         let endpoint = `https://api.trello.com/1/search?query=${query}`
         // console.log('query:' + endpoint)
         return endpoint
@@ -56,7 +60,7 @@ export default class TrelloAPI {
         this.getData(endpoint, success, failed)
     }
 
-    getBoardName(id,success, failed) {
+    getBoardName(id, success, failed) {
         let endpoint = `https://api.trello.com/1/boards/${id}`
         this.getData(endpoint, success, failed)
     }
@@ -64,6 +68,7 @@ export default class TrelloAPI {
     getSerchResult(query, success, failed) {
         this.getData(this.createSearchUrl(query), success, failed)
     }
+
     getSerchResultWithBoardName(query, boardName, success, failed) {
         query = `${query} board:${boardName}`
         // console.log('getSerchResultWithBoardName query:' + query)
