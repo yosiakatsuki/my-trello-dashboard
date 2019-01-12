@@ -10,7 +10,9 @@ export default function appWeek() {
             query: '@me due:7 due:incomplete -is:archived',
             cards: [],
             trello: null,
-            dataExists: false
+            dataExists: false,
+            countBoards: 0,
+            doFuncCount: 0
         },
         created: function () {
             this.refresh()
@@ -23,18 +25,32 @@ export default function appWeek() {
             },
             refresh: function () {
                 this.initTrello()
-                this.trello.getSerchResult(this.query, this.showTasks, this.showErr)
+                this.countBoards = 0
+                this.doFuncCount = Utility.doFuncAllBoard(this.getSerchResult)
             },
-            showTasks: function (response) {
+            getSerchResult(board, num) {
+                this.trello.getSerchResultWithBoardName(this.query,board.name,this.concatCards, this.showErr)
+            },
+            concatCards: function (response) {
+                ++this.countBoards
+                if ('cards' in response.data) {
+                    this.cards = this.cards.concat(response.data.cards)
+                    if (this.countBoards === this.doFuncCount) {
+                        this.showTasks()
+                    }
+                }
+            },
+            showTasks: function () {
                 // console.log(response.data)
-                this.cards = Utility.sortCards(response.data.cards)
+                this.cards = Utility.sortCards(this.cards)
                 this.dataExists = true
             },
             showErr: function (error) {
+                ++this.countBoards
                 console.log(error)
             },
-            getBoardName: function (id) {
-                return Utility.getBoardName(id)
+            showBoardName: function (id) {
+                return Utility.getBoardHTML(id)
             },
             showDue: function (due, dueComplete) {
                 return Utility.getDispDate(due, dueComplete)

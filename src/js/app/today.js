@@ -42,8 +42,8 @@ export default function appToday() {
             showErr: function (error) {
                 console.log(error)
             },
-            getBoardName: function (id) {
-                return Utility.getBoardName(id)
+            showBoardName: function (id) {
+                return Utility.getBoardHTML(id)
             },
             showDue: function (due, dueComplete) {
                 return Utility.getDispDate(due,dueComplete)

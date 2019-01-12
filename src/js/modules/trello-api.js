@@ -14,7 +14,7 @@ export default class TrelloAPI {
         if (url.indexOf('?') !== -1) {
             str = '&'
         }
-        return url + str + this.query
+        return `${url}${str}${this.query}`
     }
 
     getData(endpoint, success, failed) {
@@ -63,5 +63,10 @@ export default class TrelloAPI {
 
     getSerchResult(query, success, failed) {
         this.getData(this.createSearchUrl(query), success, failed)
+    }
+    getSerchResultWithBoardName(query, boardName, success, failed) {
+        query = `${query} board:${boardName}`
+        // console.log('getSerchResultWithBoardName query:' + query)
+        this.getSerchResult(query, success, failed)
     }
 }
