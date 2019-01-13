@@ -25,6 +25,8 @@ export default function appWeek() {
             },
             refresh: function () {
                 this.initTrello()
+                this.cards = []
+                this.dataExists = false
                 this.countBoards = 0
                 this.doFuncCount = Utility.doFuncAllBoard(this.getSerchResult)
             },

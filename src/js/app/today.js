@@ -27,6 +27,7 @@ export default function appToday() {
             },
             refresh: function () {
                 this.initTrello()
+                this.dataExists = false
                 this.trello.getSerchResult(this.query.priority, this.getPriorityTasks, this.showErr)
             },
             getPriorityTasks: function(response) {
