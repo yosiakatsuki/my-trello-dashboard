@@ -7,14 +7,18 @@ export default function appToday() {
     const appToday = new Vue({
         el: '#today',
         data: {
-            query: {
-                today:'@me due:2 due:incomplete -label:P1',
-                priority:'@me label:P1'
-            },
-            tempCards:[],
+            queryList: [
+                '@me due:2 due:incomplete -label:P1',
+                '@me label:P1',
+                '@me due:overdue -label:P1'
+            ],
+            query: '',
+            tempCards: [],
             cards: [],
             trello: null,
-            dataExists: false
+            dataExists: false,
+            countBoards: 0,
+            countQuery: 0
         },
         created: function () {
             this.refresh()
@@ -25,19 +29,38 @@ export default function appToday() {
                     this.trello = new TrelloAPI()
                 }
             },
-            refresh: function () {
+            initRefresh: function() {
                 this.initTrello()
+                this.cards = []
                 this.dataExists = false
-                this.trello.getSerchResult(this.query.priority, this.getPriorityTasks, this.showErr)
+                this.countBoards = 0
+                this.countQuery = 0
+                this.query = ''
             },
-            getPriorityTasks: function(response) {
-                // console.log(response.data)
-                this.tempCards = Utility.sortCards(response.data.cards)
-                this.trello.getSerchResult(this.query.today, this.showTasks, this.showErr)
+            refresh: function () {
+                this.initRefresh()
+                for (let i = 0; i < this.queryList.length; i++) {
+                    this.query = this.queryList[i]
+                    ++this.countQuery
+                    this.doFuncCount = Utility.doFuncAllBoard(this.getSerchResult)
+                }
+
             },
-            showTasks: function (response) {
+            getSerchResult(board, num) {
+                this.trello.getSerchResultWithBoardName(this.query, board.name, this.concatCards, this.showErr)
+            },
+            concatCards: function (response) {
+                ++this.countBoards
+                if ('cards' in response.data) {
+                    this.cards = this.cards.concat(response.data.cards)
+                    if (this.countBoards === this.doFuncCount && this.countQuery === this.queryList.length) {
+                        this.showTasks()
+                    }
+                }
+            },
+            showTasks: function () {
                 // console.log(response.data)
-                this.cards = this.tempCards.concat(Utility.sortCards(response.data.cards))
+                this.cards = Utility.sortCards(this.cards)
                 this.dataExists = true
             },
             showErr: function (error) {
@@ -47,7 +70,7 @@ export default function appToday() {
                 return Utility.getBoardHTML(id)
             },
             showDue: function (due, dueComplete) {
-                return Utility.getDispDate(due,dueComplete)
+                return Utility.getDispDate(due, dueComplete)
             }
         }
     })

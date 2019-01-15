@@ -1,4 +1,7 @@
 <div id="app" v-show="showAppFlg" style="display: none;">
+	<div class="my-3">
+		<button class="btn btn-info" v-on:click="refreshManual"><i class="fas fa-sync-alt mr-2"></i>すべてを更新</button>
+	</div>
 	<%- include( './_today',{data:data} ) %>
 	<%- include( './_week',{data:data} ) %>
 </div>

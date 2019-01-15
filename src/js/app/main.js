@@ -13,6 +13,7 @@ window.appMain = new Vue({
         showConfigErrFlg: false,
         showConfigWarnFlg: false,
         boards:[]
+
     },
     mounted: function () {
         Config.getConfigFromUrl()
@@ -52,6 +53,10 @@ window.appMain = new Vue({
         refreshApps: function () {
             appToday()
             appWeek()
+        },
+        refreshManual: function() {
+           document.getElementById('today-refresh').click()
+           document.getElementById('week-refresh').click()
         }
     }
 })
