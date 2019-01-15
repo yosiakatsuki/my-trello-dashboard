@@ -12,13 +12,12 @@ window.appMain = new Vue({
         showAppFlg: false,
         showConfigErrFlg: false,
         showConfigWarnFlg: false,
-        boards:[]
-
+        boards: []
     },
     mounted: function () {
         Config.getConfigFromUrl()
         if (Config.isSetUpConfig()) {
-             this.startApp()
+            this.startApp()
         }
 
     },
@@ -53,10 +52,21 @@ window.appMain = new Vue({
         refreshApps: function () {
             appToday()
             appWeek()
+            this.setAuto()
         },
-        refreshManual: function() {
-           document.getElementById('today-refresh').click()
-           document.getElementById('week-refresh').click()
+        refreshAll: function () {
+            document.getElementById('today-refresh').click()
+            document.getElementById('week-refresh').click()
+        },
+        refreshManual: function () {
+            this.refreshAll()
+        },
+        refreshAuto: function () {
+            this.refreshAll()
+            this.setAuto()
+        },
+        setAuto:function() {
+            setTimeout(this.refreshAuto, 1000 * 60);
         }
     }
 })
