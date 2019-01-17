@@ -17,8 +17,6 @@ export default function appToday() {
             cards: [],
             trello: null,
             dataExists: false,
-            countBoards: 0,
-            countQuery: 0
         },
         created: function () {
             this.refresh()
@@ -29,19 +27,16 @@ export default function appToday() {
                     this.trello = new TrelloAPI()
                 }
             },
-            initRefresh: function() {
+            initRefresh: function () {
                 this.initTrello()
                 this.cards = []
                 this.dataExists = false
-                this.countBoards = 0
-                this.countQuery = 0
                 this.query = ''
             },
             refresh: function () {
                 this.initRefresh()
                 for (let i = 0; i < this.queryList.length; i++) {
                     this.query = this.queryList[i]
-                    ++this.countQuery
                     this.doFuncCount = Utility.doFuncAllBoard(this.getSerchResult)
                 }
 
@@ -50,12 +45,9 @@ export default function appToday() {
                 this.trello.getSerchResultWithBoardName(this.query, board.name, this.concatCards, this.showErr)
             },
             concatCards: function (response) {
-                ++this.countBoards
                 if ('cards' in response.data) {
                     this.cards = this.cards.concat(response.data.cards)
-                    if (this.countBoards === this.doFuncCount && this.countQuery === this.queryList.length) {
-                        this.showTasks()
-                    }
+                    this.showTasks()
                 }
             },
             showTasks: function () {

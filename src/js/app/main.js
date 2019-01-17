@@ -12,7 +12,8 @@ window.appMain = new Vue({
         showAppFlg: false,
         showConfigErrFlg: false,
         showConfigWarnFlg: false,
-        boards: []
+        boards: [],
+        openBoards: 0
     },
     mounted: function () {
         Config.getConfigFromUrl()
@@ -47,7 +48,16 @@ window.appMain = new Vue({
         getBoards: function (response) {
             // console.log(response.data)
             this.boards = response.data
+            this.countOpenBoards()
             this.showApp()
+        },
+        countOpenBoards: function () {
+            this.openBoards = 0
+            for (let i = 0; i < this.boards.length; i++) {
+                if (!this.boards[i].closed) {
+                    ++this.openBoards
+                }
+            }
         },
         refreshApps: function () {
             appToday()
@@ -65,7 +75,7 @@ window.appMain = new Vue({
             this.refreshAll()
             this.setAuto()
         },
-        setAuto:function() {
+        setAuto: function () {
             setTimeout(this.refreshAuto, 1000 * 60);
         }
     }

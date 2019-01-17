@@ -11,8 +11,6 @@ export default function appWeek() {
             cards: [],
             trello: null,
             dataExists: false,
-            countBoards: 0,
-            doFuncCount: 0
         },
         created: function () {
             this.refresh()
@@ -27,19 +25,15 @@ export default function appWeek() {
                 this.initTrello()
                 this.cards = []
                 this.dataExists = false
-                this.countBoards = 0
-                this.doFuncCount = Utility.doFuncAllBoard(this.getSerchResult)
+                Utility.doFuncAllBoard(this.getSerchResult)
             },
             getSerchResult(board, num) {
-                this.trello.getSerchResultWithBoardName(this.query,board.name,this.concatCards, this.showErr)
+                this.trello.getSerchResultWithBoardName(this.query, board.name, this.concatCards, this.showErr)
             },
             concatCards: function (response) {
-                ++this.countBoards
                 if ('cards' in response.data) {
                     this.cards = this.cards.concat(response.data.cards)
-                    if (this.countBoards === this.doFuncCount) {
-                        this.showTasks()
-                    }
+                    this.showTasks()
                 }
             },
             showTasks: function () {
@@ -48,7 +42,6 @@ export default function appWeek() {
                 this.dataExists = true
             },
             showErr: function (error) {
-                ++this.countBoards
                 console.log(error)
             },
             showBoardName: function (id) {
