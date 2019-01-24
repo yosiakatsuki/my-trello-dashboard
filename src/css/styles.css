@@ -21,6 +21,10 @@ a.card {
   background-color: #f1d600;
   color: #ffffff; }
 
+.trello-labels .purple {
+  background-color: #C377E0;
+  color: #ffffff; }
+
 .over-due {
   color: #721c24;
   background-color: #f8d7da;

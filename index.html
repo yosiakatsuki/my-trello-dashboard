@@ -35,30 +35,28 @@
 		</div>
 
 		<div v-if="dataExists">
-	<div class="row">
-		<div v-for="card in cards" class="col-12 col-md-4 col-lg-3 mb-4">
-			<a v-bind:href="card.shortUrl" class="card h-100" target="_blank">
-				<div class="card-body h-100">
-					<div class="d-flex flex-column justify-content-between h-100">
-						<div class="main">
-							<p class="mt-0 mb-2 board-name" v-html="showBoardName(card.idBoard)"></p>
-							<h3 class="card-title h6 mb-1"><strong>{{ card.name }}</strong></h3>
-							<div class="text-left">
-								<small v-html="showDue(card.due, card.dueComplete)"></small>
-							</div>
-							<p class="card-text text-muted">
-								<small>{{ card.desc }}</small>
-							</p>
+	<div class="list-group">
+		<a v-for="card in cards" v-bind:href="card.shortUrl" class="list-group-item list-group-item-action"
+		   target="_blank">
+			<div class="row">
+				<div class="col-12 col-md-2">
+					<div class="row justify-content-between">
+						<div class="col-auto col-md-12 text-left">
+							<small v-html="showDue(card.due, card.dueComplete)"></small>
 						</div>
-						<div class="trello-labels mt-2">
+						<div class="col-auto col-md-12 trello-labels mt-md-2">
 							<div class="d-inline-block" v-for="label in card.labels">
 								<span v-bind:class="label.color" class="label-item">{{label.name}}</span>
 							</div>
 						</div>
 					</div>
 				</div>
-			</a>
-		</div>
+				<div class="col mt-2 mt-md-0">
+					<p class="mt-0 mb-2 board-name" v-html="showBoardName(card.idBoard)"></p>
+					<h3 class="card-title h5 m-0"><strong>{{ card.name }}</strong></h3>
+				</div>
+			</div>
+		</a>
 	</div>
 </div>
 <div v-else>
@@ -81,30 +79,28 @@
 		</div>
 
 		<div v-if="dataExists">
-	<div class="row">
-		<div v-for="card in cards" class="col-12 col-md-4 col-lg-3 mb-4">
-			<a v-bind:href="card.shortUrl" class="card h-100" target="_blank">
-				<div class="card-body h-100">
-					<div class="d-flex flex-column justify-content-between h-100">
-						<div class="main">
-							<p class="mt-0 mb-2 board-name" v-html="showBoardName(card.idBoard)"></p>
-							<h3 class="card-title h6 mb-1"><strong>{{ card.name }}</strong></h3>
-							<div class="text-left">
-								<small v-html="showDue(card.due, card.dueComplete)"></small>
-							</div>
-							<p class="card-text text-muted">
-								<small>{{ card.desc }}</small>
-							</p>
+	<div class="list-group">
+		<a v-for="card in cards" v-bind:href="card.shortUrl" class="list-group-item list-group-item-action"
+		   target="_blank">
+			<div class="row">
+				<div class="col-12 col-md-2">
+					<div class="row justify-content-between">
+						<div class="col-auto col-md-12 text-left">
+							<small v-html="showDue(card.due, card.dueComplete)"></small>
 						</div>
-						<div class="trello-labels mt-2">
+						<div class="col-auto col-md-12 trello-labels mt-md-2">
 							<div class="d-inline-block" v-for="label in card.labels">
 								<span v-bind:class="label.color" class="label-item">{{label.name}}</span>
 							</div>
 						</div>
 					</div>
 				</div>
-			</a>
-		</div>
+				<div class="col mt-2 mt-md-0">
+					<p class="mt-0 mb-2 board-name" v-html="showBoardName(card.idBoard)"></p>
+					<h3 class="card-title h5 m-0"><strong>{{ card.name }}</strong></h3>
+				</div>
+			</div>
+		</a>
 	</div>
 </div>
 <div v-else>
@@ -158,6 +154,6 @@
 
 
 <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
-<script defer async src="./js/script.bundle.js?1547738869330"></script>
+<script defer async src="./js/script.bundle.js?1548317415884"></script>
 </body>
 </html>

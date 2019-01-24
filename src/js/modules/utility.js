@@ -13,10 +13,11 @@ export default class Utility {
             let h = ('00' + dueDate.getHours()).slice(-2)
             let m = ('00' + dueDate.getMinutes()).slice(-2)
             let format = `${year}/${month}/${day} ${h}:${m}`
-            if (dueDate < new Date()) {
+            let now = new Date()
+            if (dueDate < now) {
                 result = `<span class="over-due">${icon}${format}</span>`
 
-            } else if (new Date(year, dueDate.getMonth() + 1, dueDate.getDate() - 1) < new Date()) {
+            } else if (dueDate.getDate() == now.getDate()) {
                 result = `<span class="today-due">${icon}${format}</span>`
             } else {
                 result = `${icon}${format}`
