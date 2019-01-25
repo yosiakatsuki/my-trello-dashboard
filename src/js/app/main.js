@@ -76,7 +76,7 @@ window.appMain = new Vue({
             this.setAuto()
         },
         setAuto: function () {
-            setTimeout(this.refreshAuto, 1000 * 60);
+            setTimeout(this.refreshAuto, 1000 * 60 * 10);
         }
     }
 })
